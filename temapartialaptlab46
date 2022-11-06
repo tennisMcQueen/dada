@@ -257,43 +257,92 @@ def uiModificaTranzactie(listaTranzactii,comanda):
         print(e)
 
 def uistergeTranzactieDupaZi(listaTranzactii,comanda):
-    ziua = int(input("Dati ziua tranzactiei de sters: "))
-    stergeTranzactieDupaZi(ziua, listaTranzactii)
+    try:
+        parametri = comanda.split()[1]
+        ziua = int(parametri.split()[0])
+        stergeTranzactieDupaZi(ziua, listaTranzactii)
+    except ValueError as e:
+        print(e)
+    except IndexError as e:
+        print(e)
 
 def uistergeTranzactiiDupaTip(listaTranzactii,comanda):
-    tipul = input("Dati tipul tranzactiei de sters: ")
-    stergeTranzactiiDupaTip(tipul, listaTranzactii)
+    try:
+        parametri = comanda.split()[1]
+        tipul = parametri.split()[0]
+        stergeTranzactiiDupaTip(tipul, listaTranzactii)
+    except IndexError as e:
+        print(e)
 
 def uistergeTranzactiidinInterval(listaTranzactii,comanda):
-    ziMin =int(input("Dati ziua minima: "))
-    ziMax = int(input("Dati ziua maxima: "))
-    return stergeTranzactiidinInterval(ziMin, ziMax, listaTranzactii)
+    try:
+        parametri = comanda.split()[1]
+        ziMin =int(parametri.split(',')[0])
+        ziMax = int(parametri.split(',')[1])
+        return stergeTranzactiidinInterval(ziMin, ziMax, listaTranzactii)
+    except ValueError as e:
+        print(e)
+    except IndexError as e:
+        print(e)
 
 def uitranzactiiCuSumaMaiMareDecatoSumaData(listaTranzactii,comanda):
-    suma = int(input("Dati suma pt care vreti tranzactii mai mari:"))
-    print (tranzactiiCuSumaMaiMareDecatoSumaData(suma, listaTranzactii))
+    try:
+        parametri = comanda.split()[1]
+        suma = int(parametri.split()[0])
+        print (tranzactiiCuSumaMaiMareDecatoSumaData(suma, listaTranzactii))
+    except ValueError as e:
+        print(e)
+    except IndexError as e:
+        print(e)
 
 def uitranzactiiDeoZi(listaTranzactii,comanda):
-    ziua = int(input("Dati ziua pt care doriti sa vedeti tranzactiile de dinainte cu o zi:"))
-    suma = int(input("Dati suma pt care vreti tranzactii mai mari:"))
-    return tranzactiiDeoZi(ziua, suma, listaTranzactii)
+    try:
+        parametri = comanda.split()[1]
+        ziua = int(parametri.split(',')[0])
+        suma = int(parametri.split(',')[1])
+        return tranzactiiDeoZi(ziua, suma, listaTranzactii)
+    except ValueError as e:
+        print(e)
+    except IndexError as e:
+        print(e)
 
 def uitranzactiiTip(listaTranzactii,comanda):
-    tipul = input("Dati tipul tranzactiei (retragere/depunere):")
-    return tranzactiiTip(tipul, listaTranzactii)
+    try:
+        parametri = comanda.split()[1]
+        tipul = parametri.split()[0]
+        return tranzactiiTip(tipul, listaTranzactii)
+    except ValueError as e:
+        print(e)
+    except IndexError as e:
+        print(e)
 
 def uisumaTotalaDeUnAnumitTip(listaTranzactii,comanda):
-    tipul = input("Dati tipul tranzactiilor carora vreti sa le vedeti suma:")
-    return sumaTotalaDeUnAnumitTip(tipul, listaTranzactii)
+    try:
+        parametri = comanda.split()[1]
+        tipul = parametri.split()[0]
+        return sumaTotalaDeUnAnumitTip(tipul, listaTranzactii)
+    except ValueError as e:
+        print(e)
+    except IndexError as e:
+        print(e)
 
 def uistergeTranzactiiMaiMiciDetip(listaTranzactii,comanda):
-    tipul = input("Dati tipul pt care vreti sa stergeti tranzactii:")
-    suma = int(input("Dati suma pt care vreti sa stergeti tranzactii:"))
-    return stergeTranzactiiMaiMiciDetip(suma, tipul, listaTranzactii)
+    try:
+        parametri = comanda.split()[1]
+        suma = int(parametri.split(',')[0])
+        tipul = parametri.split(',')[1]
+        return stergeTranzactiiMaiMiciDetip(suma, tipul, listaTranzactii)
+    except ValueError as e:
+        print(e)
+    except IndexError as e:
+        print(e)
 
 def uisoldulContuluiLaoData(listaTranzactii,comanda):
-    ziua = int(input("Dati ziua pana la care vreti sa vedeti soldul contului:"))
-    return soldulContuluiLaoData(ziua, listaTranzactii)
+    try:
+        ziua = int(comanda.split()[1])
+        return soldulContuluiLaoData(ziua, listaTranzactii)
+    except ValueError as e:
+        print(e)
 
 
 # teste ----------------
@@ -456,32 +505,33 @@ def main():
     listaTranzactii = []
     while True:
         printMenu()
-        optiune = input("Dati optiunea: ")
-        if optiune == "1":
-            uiAdaugaTranactie(listaTranzactii)
-        elif optiune == "2":
-            uiModificaTranzactie(listaTranzactii)
-        elif optiune == "3":
-            uistergeTranzactieDupaZi(listaTranzactii)
-        elif optiune == "4":
-            uistergeTranzactiiDupaTip(listaTranzactii)
-        elif optiune == "5":
-            uistergeTranzactiidinInterval(listaTranzactii)
-        elif optiune == "6":
-            uitranzactiiCuSumaMaiMareDecatoSumaData(listaTranzactii)
-        elif optiune == "7":
-            print(uitranzactiiDeoZi(listaTranzactii))
-        elif optiune == "8":
-            print(uitranzactiiTip(listaTranzactii))
-        elif optiune == "9":
-            print(uisumaTotalaDeUnAnumitTip(listaTranzactii))
-        elif optiune == "10":
-            uistergeTranzactiiMaiMiciDetip(listaTranzactii)
-        elif optiune == "11":
-            print(uisoldulContuluiLaoData(listaTranzactii))
-        elif optiune == "a":
+        comanda = input("Dati comanda: ")
+        operatiune = comanda.split()[0]
+        if operatiune == "adauga":
+            uiAdaugaTranactie(listaTranzactii, comanda)
+        elif operatiune == "modifica":
+            uiModificaTranzactie(listaTranzactii, comanda)
+        elif operatiune == "sterge_tranzactie_dupa_zi":
+            uistergeTranzactieDupaZi(listaTranzactii, comanda)
+        elif operatiune == "sterge_tranzactie_dupa_tip":
+            uistergeTranzactiiDupaTip(listaTranzactii, comanda)
+        elif operatiune == "sterge_tranzactie_din_interval":
+            uistergeTranzactiidinInterval(listaTranzactii, comanda)
+        elif operatiune == "tranzactii_cu_suma_mai_mare":
+            uitranzactiiCuSumaMaiMareDecatoSumaData(listaTranzactii, comanda)
+        elif operatiune == "tranzactii_de_o_zi":
+            print(uitranzactiiDeoZi(listaTranzactii,comanda))
+        elif operatiune == "tranzactii_tip":
+            print(uitranzactiiTip(listaTranzactii,comanda))
+        elif operatiune == "suma_totala_tip":
+            print(uisumaTotalaDeUnAnumitTip(listaTranzactii,comanda))
+        elif operatiune == "sterge_tranzactii_mai_mici":
+            uistergeTranzactiiMaiMiciDetip(listaTranzactii, comanda)
+        elif operatiune == "soldul_contului":
+            print(uisoldulContuluiLaoData(listaTranzactii,comanda))
+        elif operatiune == "afiseaza":
             printTranzactii(listaTranzactii)
-        elif optiune == "x":
+        elif operatiune == "iesire":
             break
         else:
             print("Optiune gresita! Reincercati")
